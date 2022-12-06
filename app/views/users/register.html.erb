@@ -1,0 +1,23 @@
+<div class="w-100 m-auto">
+  <%= form_with do |f| %>
+    <h1 class="h3 mb-3 fw-normal">Register now</h1>
+    <div class="form-floating mb-3">
+      <%#= f.text_field :name, class: 'form-control', id: 'floatingName', placeholder: 'Elon Musk', required:true %>
+      <input type="text" class="form-control" id="floatingName" placeholder="Elon Musk" name="user[name]" required>
+      <label for="floatingName">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingInput" placeholder="elon@twitter.com" name="user[email]" required>
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="user[password]" required>
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floating_confirm_password" placeholder="Confirm Password" name="user[password_confirmation]" required>
+      <label for="floating_confirm_password">Confirm Password</label>
+    </div>
+    <%= f.submit 'Submit', class: 'w-100 btn btn-lg btn-primary' %>
+  <% end %>
+</div>
