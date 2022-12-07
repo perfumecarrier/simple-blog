@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
-  before_action :authorize, except: [:index]
-  before_action :set_post, only: %i[edit update destroy]
+  before_action :authorize, except: %i[index show]
+  before_action :require_user, only: %i[edit update destroy]
+  before_action :set_post, only: [:show]
 
   def index
     @posts = Post.includes(:user).all.order(created_at: :desc)
@@ -11,6 +12,8 @@ class DashboardController < ApplicationController
   end
 
   def edit; end
+
+  def show; end
 
   def create
     @post = Post.new(post_params)
@@ -48,10 +51,14 @@ class DashboardController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-    redirect_to root_path if session[:user_id] != @post[:user_id]
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = 'Post does not exist.'
     redirect_to root_path
+  end
+
+  def require_user
+    set_post
+    redirect_to root_path if session[:user_id] != @post[:user_id]
   end
 
   def post_params

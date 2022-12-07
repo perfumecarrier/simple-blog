@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get 'new', to: 'dashboard#new'
   post 'create', to: 'dashboard#create'
+  get 'post/:id', to: 'dashboard#show', as: 'show'
   get 'edit/:id', to: 'dashboard#edit', as: 'edit'
   patch 'update/:id', to: 'dashboard#update', as: 'update'
   delete 'destroy/:id', to: 'dashboard#destroy', as: 'destroy'

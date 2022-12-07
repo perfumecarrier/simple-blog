@@ -1,0 +1,23 @@
+<style>
+    h5:hover {
+        color: var(--bs-blue);
+    }
+</style>
+<div class="card mb-3">
+  <div class="card-header fw-bold"><%= p.user.email %> <%= "(Me)" if p.user.id == session[:user_id] %>
+  </div>
+  <div class="card-body">
+    <h5>
+      <%= link_to p.title, show_path(p), class: 'card-title nav-link' %>
+    </h5>
+    <p class="card-text"><%= p.body %></p>
+
+    <% if p.user.id == session[:user_id] %>
+      <%= link_to 'Edit', edit_path(p), class: 'btn btn-primary' %>
+      <%= button_to 'Delete', destroy_path(p), method: :delete, class: "btn btn-danger", form_class: 'd-inline' %>
+    <% end %>
+  </div>
+  <div class="card-footer text-muted">
+    <%= time_ago_in_words(p.created_at).gsub('about', '') + ' ago' %>
+  </div>
+</div>
