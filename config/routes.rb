@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   get 'register', to: 'users#register'
   post 'register', to: 'users#create'
+
+  delete 'logout', to: 'users#logout'
 end

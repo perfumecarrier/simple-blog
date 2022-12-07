@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authorize, except: [:logout]
+
   def new; end
 
   def register; end
@@ -39,6 +41,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def authorize
+    redirect_to root_path if logged_in?
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
