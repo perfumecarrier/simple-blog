@@ -1,0 +1,12 @@
+<p class="fs-1 fw-bold">Update Post</p>
+<%= form_with model: @post, url: update_path(@post.id) do |f| %>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <%= f.text_field :title, id: 'title', class: 'form-control', placeholder: 'Elon Musk bought Twitter', required: true %>
+  </div>
+  <div class="mb-3">
+    <label for="body" class="form-label">Description</label>
+    <%= f.text_area :body, id: 'body', class: 'form-control', style: 'max-height: 150px;', required: true %>
+  </div>
+  <%= f.submit 'Update', class: 'btn btn-primary' %>
+<% end %>

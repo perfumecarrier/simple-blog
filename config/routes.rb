@@ -11,4 +11,11 @@ Rails.application.routes.draw do
   post 'register', to: 'users#create'
 
   delete 'logout', to: 'users#logout'
+
+  get 'new', to: 'dashboard#new'
+  post 'create', to: 'dashboard#create'
+  get 'edit/:id', to: 'dashboard#edit', as: 'edit'
+  patch 'update/:id', to: 'dashboard#update', as: 'update'
+  delete 'destroy/:id', to: 'dashboard#destroy', as: 'destroy'
+
 end

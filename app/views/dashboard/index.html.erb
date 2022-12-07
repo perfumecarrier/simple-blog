@@ -1,1 +1,28 @@
-<h1>Welcome</h1>
+<h1 class="mb-4">Posts Feed</h1>
+<% if @posts.any? %>
+  <% @posts.each do |p| %>
+    <div class="card mb-3">
+      <div class="card-header fw-bold">
+        <%= p.user.email %> <%= "(Me)" if p.user.id == session[:user_id] %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= p.title %></h5>
+        <p class="card-text"><%= p.body %></p>
+
+        <% if p.user.id == session[:user_id] %>
+          <%= link_to 'Edit', edit_path(p), class: 'btn btn-primary' %>
+          <%= button_to 'Delete', destroy_path(p), method: :delete, class: "btn btn-danger", form_class: 'd-inline' %>
+        <% end %>
+      </div>
+      <div class="card-footer text-muted">
+        <%= time_ago_in_words(p.created_at).gsub('about', '') + ' ago' %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>
+    <span class="text-danger bi-fire"> Oops!</span>
+    There are no posted. Become the first one to
+    post. <%= link_to "Click here to create", new_path %>
+  </p>
+<% end %>
